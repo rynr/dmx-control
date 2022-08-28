@@ -98,4 +98,39 @@ class ColorTest {
                 () -> locakedColor.clearChannel(Channel.W));
     }
 
+    @Test
+    void canBuildAColor() {
+        var color = new Color()
+                .setChannel(Channel.R, 1)
+                .setChannel(Channel.G, 2)
+                .setChannel(Channel.B, 3)
+                .setChannel(Channel.W, 4)
+                .setChannel(Channel.A, 5)
+                .setChannel(Channel.UV, 6);
+
+        assertThat(color.getChannels(), allOf(
+                hasEntry(Channel.R, 1),
+                hasEntry(Channel.G, 2),
+                hasEntry(Channel.B, 3),
+                hasEntry(Channel.W, 4),
+                hasEntry(Channel.A, 5),
+                hasEntry(Channel.UV, 6)
+        ));
+    }
+
+    @Test
+    void canClearAChannel() {
+        var color = new Color()
+                .setChannel(Channel.X, 2)
+                .setChannel(Channel.Y, 3)
+                .setChannel(Channel.UV, 255)
+                .clearChannel(Channel.UV);
+
+        assertThat(color.getChannels(), not(hasKey(Channel.UV)));
+        assertThat(color.getChannels(), allOf(
+                hasEntry(Channel.X, 2),
+                hasEntry(Channel.Y, 3)
+        ));
+    }
+
 }
