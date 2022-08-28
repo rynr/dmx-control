@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toMap;
-
 public class Fixture {
     private final Map<Channel, Integer> channels;
     private final Map<Integer, Integer> values;

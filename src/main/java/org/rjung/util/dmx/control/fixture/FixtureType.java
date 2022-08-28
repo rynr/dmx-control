@@ -7,7 +7,7 @@ public enum FixtureType {
 
     private final List<Channel> channels;
 
-    private FixtureType(List<Channel> colors) {
+    FixtureType(List<Channel> colors) {
         this.channels = colors;
     }
 
