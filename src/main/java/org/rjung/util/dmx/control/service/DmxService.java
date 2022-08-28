@@ -8,10 +8,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.IntStream;
@@ -48,7 +46,7 @@ public class DmxService implements Closeable {
     }
 
     @Scheduled(fixedRate = FRAMETIME)
-    public void sendDmx() throws InterruptedException {
+    public void sendDmx() {
         if (running.get()) {
             var frame = frameCounter.incrementAndGet();
             for (var group : groups) {
@@ -73,7 +71,7 @@ public class DmxService implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         this.running.set(false);
         this.artnet.stop();
     }

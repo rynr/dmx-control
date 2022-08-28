@@ -1,11 +1,8 @@
 package org.rjung.util.dmx.control.effect;
 
 import org.rjung.util.dmx.control.fixture.Channel;
-import org.rjung.util.dmx.control.fixture.Color;
 import org.rjung.util.dmx.control.fixture.Effect;
 import org.rjung.util.dmx.control.fixture.Group;
-
-import java.math.BigDecimal;
 
 public class RainbowEffect implements Effect {
 

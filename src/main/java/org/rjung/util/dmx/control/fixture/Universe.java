@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public class Universe {
 
-    private byte[] channels;
+    private final byte[] channels;
 
     public Universe() {
         this.channels = new byte[512];
