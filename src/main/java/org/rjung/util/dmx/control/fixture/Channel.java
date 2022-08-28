@@ -6,7 +6,8 @@ public enum Channel {
     A("amber"),
     UV("uv"),
     X("x-axis"),
-    Y("y-axis");
+    Y("y-axis"),
+    SW("switch");
 
     private final String name;
 
