@@ -22,9 +22,9 @@ public class Group {
         this.program = program;
     }
 
-    public void update(long time, int fps) {
+    public void update(long timeMillis) {
         for (var effect : effects.get(program)) {
-            effect.update(time, fps, fixtures.size(), this);
+            effect.update(timeMillis, fixtures.size(), this);
         }
     }
 
