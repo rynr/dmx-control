@@ -33,7 +33,7 @@ public class DmxControlApplication implements ApplicationRunner {
 			Thread.sleep(15000);
 			dmxService.setProgram(2);
 			Thread.sleep(15000);
-			dmxService.setProgram(3);
+			dmxService.setProgram(1);
 			Thread.sleep(15000);
 		}
 	}

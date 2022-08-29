@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.Closeable;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -37,9 +38,9 @@ public class DmxService implements Closeable {
                         .toList())
         );
         groups.forEach(g -> g.setEffects(Map.of(
-                1, List.of(new StepperEffect(1)),
-                2, List.of(new StepperEffect(2)),
-                3, List.of(new RainbowEffect())
+                1, List.of(new StepperEffect(1, 300)),
+                2, List.of(new StepperEffect(2, 300)),
+                3, List.of(new RainbowEffect(600))
         )));
         this.artnet = new ArtNetClient();
         this.universe = new Universe();
@@ -48,9 +49,9 @@ public class DmxService implements Closeable {
     @Scheduled(fixedRate = FRAMETIME)
     public void sendDmx() {
         if (running.get()) {
-            var frame = frameCounter.incrementAndGet();
+            var timeMillis = System.currentTimeMillis();
             for (var group : groups) {
-                group.update(frame, FRAMERATE);
+                group.update(timeMillis);
             }
 
             universe.update(groups);
